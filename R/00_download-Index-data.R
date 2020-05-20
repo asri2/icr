@@ -1,8 +1,7 @@
 #------------------------------------------------------------------
 # Series :00
 # Name: the day of the week and Volatility
-# Description: This program download and prepare asset prices and return
-#               by quantmod
+# Description: This program download and export inital dataset
 # Ticker: IDX; JKSE, Indonesia.
 # Author: Asri Surya
 # Date: May 2020
@@ -19,13 +18,15 @@ ipak <- function(pkg){
 }
 
 # List of packages
-packages <- c("quantmod","knitr")
+packages <- c("quantmod","knitr","dplyr")
 ipak(packages)
 
 # Download data from YahooFinance
 getSymbols('^JKSE', from='2000-01-01', to='2020-01-01') # where JKSE: Indonesia Stock Exchange
-JKSEReturns <- dailyReturn(JKSE, type='log') #Calculate Index return, Daily
-
-write.csv(JKSE,"dataset.csv", row.names = TRUE)
+df <- fortify(JKSE)
+df1<-df %>%       # select only date and Close price
+  select(Index, JKSE.Close)
+colnames(df1)<- c("date","px.close") # rename column name
+write.csv(df1,"dataset.csv", row.names = TRUE)
 
 #+++end
