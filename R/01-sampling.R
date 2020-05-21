@@ -21,14 +21,20 @@ ipak <- function(pkg){
 packages <- c("dplyr","lubridate")
 ipak(packages)
 
-# Import data
-jkse <- read.csv('dataset.csv')
-jkse <- jkse %>% 
+# Import and transform data------
+raw_data <- read.csv('dataset.csv') #read dataset from local drive
+
+df <- raw_data %>% 
   select("date","px.close") %>% 
   mutate(px.return=log(px.close/lag(px.close)))%>% #Calculate return (close-to-close)
-  mutate(day=wday(date, label = TRUE)) %>% #Generate name of the day
-  mutate(tradingday= #trading and nontrading days
-           case_when(px.close %in% NA ~0, 
-                               TRUE ~1) )
-head(jkse,15)
+  mutate(day=wday(date, label = TRUE)) %>% #Generate name of the day (label)
+  mutate(tradingday=case_when(px.close %in% NA ~0, TRUE ~1) ) #Dummy trading and nontrading days
+  
+# Generate dummy variable weekday
+df <- model.matrix(~0 + day, jkse) %>%
+  as.data.frame() %>% 
+  bind_cols(df) %>% 
+  # Drop weekend and base category (Wednesday)  
+    select(day,everything(),-c(daySun,dayWed,daySat))
 
+head(df,10)  
