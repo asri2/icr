@@ -21,26 +21,13 @@ ipak <- function(pkg){
 packages <- c("dplyr","lubridate")
 ipak(packages)
 
-# Import the data and look at the first six rows
+# Import data
 jkse <- read.csv('dataset.csv')
 jkse <- jkse %>% 
   select("date","px.close") %>% 
-  mutate(day=wday(date, label = TRUE))
+  mutate(px.return=log(px.close/lag(px.close)))%>% #Calculate return (close-to-close)
+  mutate(day=wday(date, label = TRUE)) %>% #Generate name of the day
+  mutate(tradingday= case_when(px.close %in% NA ~0, #trading and non trading days
+                               px.close!=0~1) )
 head(jkse,10)
 
-# Calculate return (close-to-close)
-#jkse <- jkse %>% 
-  mutate(px.return=log(px.close/lag(px.close)))
-head(jkse,10) #check header
-
-# Check the non-trading day on weekdays
-
-# generate sequential date
-ts <- seq(ymd("2000-01-01"), ymd("2020-01-01"), by="day")
-df <- data.frame(date=ts) #change object type to Date
-jkse <- jkse  %>%  #Merge missing date with jkse
-  full_join(df,jkse, by='date')
-head(jkse,13)
-
-jkse <- jkse %>%
- 
