@@ -22,7 +22,7 @@ packages <- c("dplyr","lubridate")
 ipak(packages)
 
 # Import and transform data------
-raw_data <- read.csv('dataset.csv') #read dataset from local drive
+raw_data <- read.csv('Datafiles/dataset.csv') #read dataset from local drive
 
 df <- raw_data %>% 
   select("date","px.close") %>% 
@@ -31,14 +31,13 @@ df <- raw_data %>%
   mutate(tradingday=case_when(px.close %in% NA ~0, TRUE ~1) ) #Dummy trading and nontrading days
   
 # Generate dummy variable weekday
-df <- model.matrix(~0 + day, jkse) %>%
+df <- model.matrix(~0 + day, df) %>%
   as.data.frame() %>% 
   bind_cols(df) %>% 
   # Drop weekend and base category (Wednesday)  
-    select(day,everything(),-c(daySun,dayWed,daySat))
+    select(day,everything(),-c(daySun,daySat))
  
 # save R dataset Object
-saveRDS(df, file = "jkse.rds")
-# Restore the object
-readRDS(file = "my_data.rds")
+saveRDS(df, file = "Datafiles/dataset_sample.rds")
+
 # ~ end
