@@ -27,7 +27,8 @@ jkse <- jkse %>%
   select("date","px.close") %>% 
   mutate(px.return=log(px.close/lag(px.close)))%>% #Calculate return (close-to-close)
   mutate(day=wday(date, label = TRUE)) %>% #Generate name of the day
-  mutate(tradingday= case_when(px.close %in% NA ~0, #trading and non trading days
-                               px.close!=0~1) )
-head(jkse,10)
+  mutate(tradingday= #trading and nontrading days
+           case_when(px.close %in% NA ~0, 
+                               TRUE ~1) )
+head(jkse,15)
 
