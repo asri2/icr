@@ -36,5 +36,9 @@ df <- model.matrix(~0 + day, jkse) %>%
   bind_cols(df) %>% 
   # Drop weekend and base category (Wednesday)  
     select(day,everything(),-c(daySun,dayWed,daySat))
-
-head(df,10)  
+ 
+# save R dataset Object
+saveRDS(df, file = "jkse.rds")
+# Restore the object
+readRDS(file = "my_data.rds")
+# ~ end

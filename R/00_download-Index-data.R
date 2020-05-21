@@ -18,7 +18,7 @@ ipak <- function(pkg){
 }
 
 # List of packages
-packages <- c("quantmod","knitr","dplyr")
+packages <- c("quantmod","ggplot2","dplyr")
 ipak(packages)
 
 # Download data from YahooFinance
@@ -27,6 +27,6 @@ df <- fortify(JKSE)
 df1<-df %>%       # select only date and Close price
   select(Index, JKSE.Close)
 colnames(df1)<- c("date","px.close") # rename column name
-write.csv(df1,"dataset.csv", row.names = TRUE)
+write.csv(df1,"Datafiles/dataset.csv", row.names = TRUE) #write csv into Datafiles folder
 
 #+++end
