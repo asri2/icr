@@ -22,22 +22,25 @@ packages <- c("dplyr","lubridate")
 ipak(packages)
 
 # Import the data and look at the first six rows
-jkse <- read.csv(file = 'dataset.csv')
+jkse <- read.csv('dataset.csv')
+jkse <- jkse %>% 
+  select("date","px.close") %>% 
+  mutate(day=wday(date, label = TRUE))
 head(jkse,10)
 
-
 # Calculate return (close-to-close)
-jkse <- jkse %>% 
+#jkse <- jkse %>% 
   mutate(px.return=log(px.close/lag(px.close)))
 head(jkse,10) #check header
 
 # Check the non-trading day on weekdays
-jkse <- jkse %>% 
-  mutate(trading.day =  case_when))
-
 
 # generate sequential date
-
 ts <- seq(ymd("2000-01-01"), ymd("2020-01-01"), by="day")
-df <- data.frame(date=ts)
-jkse <- full_join(df,jkse)
+df <- data.frame(date=ts) #change object type to Date
+jkse <- jkse  %>%  #Merge missing date with jkse
+  full_join(df,jkse, by='date')
+head(jkse,13)
+
+jkse <- jkse %>%
+ 
