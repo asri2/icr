@@ -1,7 +1,7 @@
 #------------------------------------------------------------------
-# Series :01
+# Series :02
 # Name: the day of the week and Volatility
-# Description: Create summart table in LATEX format
+# Description: Create summary table in LATEX format
 # Ticker: IDX; JKSE, Indonesia.
 # Author: Asri Surya
 # Date: May 2020
@@ -10,56 +10,66 @@
 rm(list = ls()) #clear terminal
 cat("\014") #clear console
 
-#environment preparation ------------
-ipak <- function(pkg){
-  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
-  if (length(new.pkg)) 
-    install.packages(new.pkg, dependencies = TRUE)
-  sapply(pkg, require, character.only = TRUE)
-}
-
 # List of packages
-packages <- c("dplyr","lubridate", "qwraps2")
-ipak(packages)
 
+library(dplyr)
+library(qwraps2)
 options(qwraps2_markup = "markdown")
 # options(qwraps2_markup = "latex") is also supported.
 
 # Restore the dataset from 01
 df <- readRDS(file = "Datafiles/dataset_proc.rds")
+df <- df %>% 
+  select(day, px.return, date, sub_period)
 #frmt(whole, digits = getOption("qwraps2_frmt_digits", 4))
 
 period_list <- c( "2000-2004","2005-2009","2010-2014","2015-2019")
-daynames = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+day_names = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+
+
+
+
+df_1 <- df %>% 
+    filter(sub_period== 1)
+df_2 <- df %>% 
+    filter(sub_period== 2)
+df_3 <- df %>% 
+    filter(sub_period== 3)
+df_4 <- df %>% 
+    filter(sub_period== 4)
 
 
 our_summary1 <-
   list("2000-2019 (Full Sample)" =
-         list("Mean" = ~ mean(.data$px.return),
-              "Standard Deviation" = ~ sd(.data$px.return),
-              "t-statistic" = ~ max(.data$px.return),
-              "Observations" = ~ length(.data$px.return)))
+         list("Mean" = ~ mean(df$px.return),
+              "Standard Deviation" = ~ sd(df$px.return),
+              "t-statistic" = ~ max(df$px.return),
+              "Observations" = ~ length(df$px.return)),
+  "2000-2004" =
+         list("Mean" = ~ mean(df_1$px.return),
+              "Standard Deviation" = ~ sd(df_1$px.return),
+              "t-statistic" = ~ max(df_1$px.return),
+              "Observations" = ~ length(df_1$px.return)),
+  "2005-2009" =
+         list("Mean" = ~ mean(df_2$px.return),
+              "Standard Deviation" = ~ sd(df_2$px.return),
+              "t-statistic" = ~ max(df_2$px.return),
+              "Observations" = ~ length(df_2$px.return)),
+  "2010-2014" =
+         list("Mean" = ~ mean(df_3$px.return),
+              "Standard Deviation" = ~ sd(df_3$px.return),
+              "t-statistic" = ~ max(df_3$px.return),
+              "Observations" = ~ length(df_3$px.return)),
+  "2014-2019" =
+         list("Mean" = ~ mean(df_4$px.return),
+              "Standard Deviation" = ~ sd(df_4$px.return),
+              "t-statistic" = ~ max(df_4$px.return),
+              "Observations" = ~ length(df_4$px.return)))
 
 ### Overall
 whole <- summary_table(dplyr::group_by(df, day), our_summary1)
 whole
 
 print(whole,
-      cnames = daynames)
-
-for (m in 1:4) {
-  j <- df %>% 
-    filter(sub_period== m) %>% 
-    select(day, px.return, date, sub_period)
-  period = paste0(period_list[m])
-  our_summary0 <-
-    list( print =
-           list("Mean" = ~ mean(.data$px.return),
-                "Standard Deviation" = ~ sd(.data$px.return),
-                "t-statistic" = ~ max(.data$px.return),
-                "Observations" = ~ length(.data$px.return)))
-  whole <- summary_table(dplyr::group_by(j, day), our_summary0)
-  print(period)
-  print(whole,
-        cnames = daynames)
-}
+      cnames = day_names)
+#+end~
