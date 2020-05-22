@@ -24,3 +24,4 @@ ipak(packages)
 
 # Restore the dataset from 01
 df <- readRDS(file = "Datafiles/dataset_sample.rds")
+df

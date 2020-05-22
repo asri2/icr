@@ -40,7 +40,7 @@ df <- model.matrix(~0 + day, df) %>%
 
 # Create Subgroups based on Time Period
 df <- df %>% 
-  mutate(cg = case_when(date >= 2000 & date <2005 ~ 1,
+  mutate(sub_period = case_when(date >= 2000 & date <2005 ~ 1,
                         date >= 2005 & date <2010 ~ 2,
                         date >= 2010 & date <2015 ~ 3,
                         date >= 2015 & date <2020 ~ 4))
