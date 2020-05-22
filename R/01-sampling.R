@@ -26,7 +26,7 @@ raw_data <- read.csv('Datafiles/dataset.csv') #read dataset from local drive
 
 df <- raw_data %>% 
   select("date","px.close") %>% 
-  mutate(px.return=log(px.close/lag(px.close)))%>% #Calculate return (close-to-close)
+  mutate(px.return=100*log(px.close/lag(px.close)))%>% #Calculate return (close-to-close)
   mutate(day=wday(date, label = TRUE)) %>% #Generate name of the day (label)
   mutate(tradingday=case_when(px.close %in% NA ~0, TRUE ~1) ) #Dummy trading and nontrading days
   
@@ -37,7 +37,9 @@ df <- model.matrix(~0 + day, df) %>%
   # Drop weekend and base category (Wednesday)  
     select(day,everything(),-c(daySun,daySat))
  
+df <- na.omit(df) #remove NA values
+
 # save R dataset Object
-saveRDS(df, file = "Datafiles/dataset_sample.rds")
+saveRDS(df, file = "Datafiles/dataset_proc.rds")
 
 # ~ end
