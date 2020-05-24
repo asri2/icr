@@ -72,5 +72,4 @@ whole <- summary_table(dplyr::group_by(df, day), our_summary1)
 print(whole,
       cnames = day_names)
 #+end~
-
-g <- 
+print(xtable(whole, type = "latex"), file = "filename2.tex")
