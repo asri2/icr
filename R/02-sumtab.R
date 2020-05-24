@@ -30,7 +30,7 @@ day_names = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
 
 our_summary1 <-
   list("2000-2019 (Full Sample)" =
-         list("Mean_sd" = ~ mean(.data$px.return, digits = getOption("qwraps2_frmt_digits", 2),),
+         list("Mean" = ~ mean(.data$px.return, digits = getOption("qwraps2_frmt_digits", 2),),
               "Standard Deviation" = ~ sd(.data$px.return),
               "Skewness" = ~ skewness(.data$px.return),
               "Observations" = ~ length(.data$px.return)))
@@ -38,19 +38,12 @@ our_summary1 <-
 ### Overall
 whole <- summary_table(dplyr::group_by(df, day), our_summary1)
 wholex <- xtable(whole, digits = c(2,2,2,0,0,2))
-align(wholex) <- "lrrrr" #alignment
-addtorow <- list()
-addtorow$pos <- list(0,0)
-
-#header
-addtorow$command <- c("& Monday & Tuesday & Wednesday & Thursday & Friday\\\\\n",
-                      "& Mean& St.dev & T-stat & Observations\\\\\n")
+align(wholex) <- "lrrrrr" #alignment
 
 names(wholex) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
-#print(xtable(whole, type = "latex", caption = "Summary Statistics of Return", digits = c(0,0,0,2,2,1)),
-#      file = "filename2.tex", caption.placement = "top")
+wholex.side <- xtable(wholex, caption = "Summary Statistics of Return")
 
-print(wholex, caption = "Summary Statistics of Return", include.colnames = TRUE, type = "latex", 
+print(wholex.side, include.colnames = TRUE, type = "latex", 
       floating = FALSE,
       include.rownames=TRUE, file="ini.tex", caption.placement = "top")
 
