@@ -22,7 +22,7 @@ packages <- c("dplyr","lubridate")
 ipak(packages)
 
 # Import and transform data------
-raw_data <- read.csv('Datafiles/dataset.csv') #read dataset from local drive
+raw_data <- read.csv('data/dataset.csv') #read dataset from local drive
 
 df <- raw_data %>% 
   select("date","px.close") %>% 
@@ -49,6 +49,6 @@ df <- df %>%
 df <- na.omit(df) #remove NA values
 
 # save R dataset Object
-saveRDS(df, file = "Datafiles/dataset_proc.rds")
+saveRDS(df, file = "data/dataset_clean.rds")
 
 # ~ end
