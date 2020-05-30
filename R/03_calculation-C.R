@@ -21,7 +21,7 @@ ipak <- function(pkg){
 
 
 # List of packages
-packages <- c("xtable", "rugarch","dplyr")
+packages <- c("xtable", "rugarch","dplyr", "xtable")
 ipak(packages)
 
 # load dataset to environment ----
@@ -58,7 +58,7 @@ for (i in 1:loopLength) {
        
     # extract coefficient and standard deviation from garch1 estimation (S4 Class object)
        Coef <- as.matrix(garch1@fit$coef) # coeficient
-       Stdev <- as.matrix(garch1@fit$se.coef) # standard deviation
+       Stdev <- as.matrix(garch1@fit$se.coef) # standard deviation garch1@fit[["se.coef"]]
         CoefLength <-(length(Coef))
 
       l<-1
@@ -75,7 +75,7 @@ mres<-as.data.frame(garch1@fit$coef)
 mm <- rownames(mres)
 mmname <-matrix(1:24)
 ij<-1
-var_name <- c("Constant", "Monday", "Tuesday", "Thursday", "Friday")
+
 for (jj in 1: 12){
   mmname[ij] = paste0(mm[jj])
   k <- ij+1
@@ -86,6 +86,9 @@ for (jj in 1: 12){
 # note: add likelihood ratio under the main table
 
 #+++++++++  Final Output
-garchresult <- cbind(mmname,mresult)
+garchresult <- cbind(mresult, colnames(mmname))
+
+saveRDS(garchresult, file = "data/garch_clean.rds")
+
 
 #End
