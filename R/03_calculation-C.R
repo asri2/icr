@@ -86,7 +86,7 @@ for (jj in 1: 12){
 # note: add likelihood ratio under the main table
 
 #+++++++++  Final Output
-garchresult <- cbind(mresult, colnames(mmname))
+garchresult <- cbind(mresult)
 
 saveRDS(garchresult, file = "data/garch_clean.rds")
 
