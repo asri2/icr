@@ -17,8 +17,6 @@ df <- readRDS(file = "Datafiles/dataset_clean.rds")
 
 # Generate table 1
 
-
-
 # commonly used paths in my working directory
 wd$data   <- "D:/git/icr/data/"
 wd$output <- "D:/git/icr/output/"
