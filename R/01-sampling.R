@@ -48,6 +48,7 @@ df <- df %>%
 
 df <- na.omit(df) #remove NA values
 
+write.dta(df, "dataset_clean.dta") 
 # save R dataset Object
 saveRDS(df, file = "data/dataset_clean.rds")
 

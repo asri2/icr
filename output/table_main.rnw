@@ -1,7 +1,5 @@
 \documentclass{article}
-\usepackage{rotating}
 \begin{document}
 Table 1. Modified GARCH Estimation
-$\echo_1$
 \input{tab_01.tex}
 \end{document}
