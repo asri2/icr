@@ -1,0 +1,231 @@
+% $Id: jfesample.tex,v 19:a118fd22993e 2013/05/24 04:57:55 stanton $
+\documentclass[12pt]{article}
+
+% DEFAULT PACKAGE SETUP
+
+\usepackage{setspace,graphicx,epstopdf,amsmath,amsfonts,amssymb,amsthm,}
+\usepackage{marginnote,datetime,enumitem,subfigure,rotating,fancyvrb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{mathptmx}
+\usepackage{hyperref,float}
+\usepackage[longnamesfirst]{natbib}
+% set margin
+\usepackage[margin=1in]{geometry}
+\renewcommand{\tablename}{\textbf {Table}}
+% Table Aesthetics Setup ~~~~~~~~~~
+% \sisetup{output-decimal-marker={,}}% OP now wants to have the default dot
+%\sisetup{detect-weight, mode=text}
+\newcommand*\rotbf[1]{\rotatebox{90}{\textbf{#1}}}
+\newcommand{\specialcell}[2][b]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\newcommand{\specialcellbold}[2][b]{%
+  \bfseries
+  \sisetup{text-rm=\bfseries}%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}%
+}
+\newcommand*{\leftspecialcell}[2][b]{%
+  \begin{tabular}[#1]{@{}l@{}}#2\end{tabular}%
+}
+
+\usepackage[singlelinecheck=false]{caption}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\captionsetup[table]{labelsep=period} 
+\captionsetup[table]{skip=14pt}
+% table setup end here ~~~
+% Command to start a new page, starting on odd-numbered page if twoside option 
+% is selected above
+\newcommand{\clearRHS}{\clearpage\thispagestyle{empty}\cleardoublepage\thispagestyle{plain}}
+
+% Number paragraphs and subparagraphs and include them in TOC
+%\setcounter{tocdepth}{2}
+
+% JFE-specific includes:
+
+\usepackage{indentfirst} % Indent first sentence of a new section.
+\usepackage{jfe}          % JFE-specific formatting of sections, etc.
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{assumption}{Assumption}[section]
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}
+\newtheorem{condition}{Condition}
+
+\begin{document}
+
+\setlist{noitemsep}  % Reduce space between list items (itemize, enumerate, etc.)
+%\onehalfspacing      % Use 1.5 spacing
+% Use endnotes instead of footnotes - redefine \footnote command
+
+\title{The Day of The Week Effect and Volatility:\\ Evidence from Indonesia }
+
+\author{Mamduh M. Hanafi$^1$, Asri Surya$^2$}
+
+\date{}              % No date for final submission
+
+% Create title page with no page number
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\singlespacing
+
+\maketitle
+
+\vspace{-.2in}
+\begin{abstract}
+\noindent This study examines the pattern of stock returns in relation to trading days by using Modified-GARCH which was previously initiated by Berument and Kiymaz (2001). By observing the movement of the return from 1990 to 2019, we found that the existence of the day-of-the-week effect both on return and volatility equation. The highest return occurred on Wednesdays, while the lowest return occurred on Mondays. Meanwhile, the highest volatility occurred on Mondays and the lowest on Fridays.
+
+\end{abstract}
+
+\medskip
+
+\noindent \textit{JEL classification}: G10, G12, C22.
+
+\medskip
+\noindent \textit{Keywords}: Day-of-the-week effect, Market anomaly.
+
+\thispagestyle{empty}
+
+\clearpage
+
+\doublespacing
+\setcounter{footnote}{0}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\setcounter{page}{1}
+
+%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+%Main body  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+\section*{Introduction}
+
+The early work of day of the week effect dated back on \cite{Cross1973} and \cite{French1980}'s papers. They prove that the return pattern of  S\&P 500 Index on Monday is negative and Friday is positive. This finding is crucial in determining buy-sell strategy and market timing on that period.
+
+For the past decades, the day of the week effect topic is hectic 
+
+Several studies have investigated the day of the week effect in Indonesia Stock Market (IDX) which have a mixed result. \cite{Cahyaningdyah2005} report that there are negative return on Monday and positive on Friday. The Monday negative return inline with \cite{Sumiyana2008}'s finding by using intra-day data on the the several most liquid stocks . In contrast, \cite{Tandelilin1999} report that not only Friday, but also Tuesday and Wednesday have positive abnormal returns. 
+
+The previous studies of the day-of-the-week effect are still focus on investigating the mean return using Ordinary Least Square (OLS) method. However,  many new evidence show that the characteristics of return (financial asset data) which are time-varying and conditional volatility (Campbell, 1999; Brooks, 2012). It means that the standard deviation estimate may too low or too high, which lead to misleading statistical evidence of a linear relationship between independent non-stationary variables. This shortfall does not satisfy the classic Gauss-Markov assumption in OLS regression. To address this shortfall, \cite{Berument2001, Berument2012} propose a modified-GARCH model to account for time varying volatility. They found that the mean return and volatility relationship is no different in most of US Equity market, and Turkish Stock Exchange after taking into account the day-of-the-week difference.
+
+In this paper we revisit the day-of-the-week effect in Indonesia Stock Market (IDX) by taking into account the mean and volatility by apply \cite{Berument2012}'s model. We offer a more appropriate method compared to other research that use the same sample. Previous studies in Indonesia still not apply GARCH and has a relatively short estimation period. 
+
+This project provided an important opportunity to advance the understanding of. The major objective of this study was to investigate. The practical contribution of this paper will be still informative and useful for investors in making buy-sell decision.
+
+The outline of the paper as follows: Section (2) discuss the summary of literature review on day of the week effect and its model development. Section (3) shows the data and methodology that is employed. Section (4) presents empirical result and its discussions. Section (5) shows conclusion and suggestion for further research. 
+
+%--------------------------------------------------#########################################
+\section*{Prior Work on The Day of The Week Effect} \label{sec:lit}
+
+Asset return pattern has profound implication for trading strategies and investor behaviour. Many evidence show that in the US market Monday's return is negative or lower than the other days, and Friday's return is positive \citep{Cross1973,French1980,Lakonishok1988,keim1984}. The implication of this findings can put into investors' trading strategies by buying on Monday and sell on Friday (buy low, sell high).
+
+Numerous studies have been attempted to explain asset return pattern in trading days. The earliest work is from \cite{Cross1973} who show that the S\&P500 composite is perform better on Friday than Monday. \cite{French1980} also found that on average there is a negative return on Monday on the same sample. Generally, the argue that the negative return on Monday occurs because of the anticipation the arrival of unfavourable information during the weekend, by discounting the price on Monday.
+
+\cite{LAKONISHOK1990} investigatethe daily trading pattern of Individual and Institutional investors in New York Stock Exchange during 1962-1986. They found that the propensity of individual investor to buy on Monday is lower than the propensity to sell. n Monday. Furthermore, the desire of investors to conduct a transaction Monday  is higher than other days so that transaction volume on Monday is higher than other days. They also argue that the investors have tendencies selling at a higher-level price than buying price, which make the equilibrium price shift toward a lower level.
+
+The argument of Monday effect is supported by Gibbson and Hess (1981) which report that the negative return on Monday is caused by a measurement error. They examined S\&P 500, CRSP Value Index, NYSE capitalization-weighted index and AMEX (America Stock Exchange) from 1962 to 1978. The Monday negative return was calculated based on close-to-close price on Friday. Jaffe dan Westerfield (1985a dan 1985b) confirm this anomaly which was also occurred in Canada, the U.K., Japan, and Australia’s stock market. Their finding shows that on average the negative returns is on Monday in Canada, The U.K., and the U.S. while in Japan and Australia are happened on Tuesday.
+
+An investigation of the day of the week effect in emerging countries by \cite{Aggarwal1989} report the presence of Monday effect. Their study showed that a negative return on Monday in Hong Kong, Singapore, Malaysia, and Philippines. What is interesting in their finding is that they also find Tuesday effect. It is suspected that the negative return on Tuesday reflects relationship between the emerging markets and New York market situation on Monday which is 13 hours difference.
+
+Preliminary work on the day-of-the-week-effect on Indonesia was undertaken by \cite{Tandelilin1999}. They examined 40 of the most active traded stocks based on trading volume from January to December 1996. They claim that there are negative returns on Tuesday, Wednesday, and Friday but not on Monday. They also point out that on Monday and Thursday, there is a tendency of Investors to hold their transaction for reformulating their trading strategies for the next day. This argument is supported by their findings on trading volume on Monday and Tuesday which are relatively lower than any other days.
+
+In contras to \cite{Tandelilin1999}, \cite{Cahyaningdyah2005} argues that the lowest return is on Monday and the highest one is on Friday. She points out that it is still unclear why there are significant return both on Monday and Friday.
+Similarly, the negative Monday return in Indonesia is supported by \cite{Sumiayana2007, Sumiyana2008} who report that the negative return on Monday happened partially and incidental. Based on his intraday analysis of LQ45 Index member, he claims that the negative return is only happened on specific time on trading sessions. 
+
+The day-of-the-week effect is not only on mean of return but also on volatility of return.  While previous studies have based their analysis on Ordinary Least Square (OLS) estimation, \cite{Berument2001, Berument2012} introduced a new approach by using modified GARCH (Generalized Autoregressive Conditional Heteroscedasticity) estimation. Their finding points out that the volatility of return is much higher on Monday in German and Japan while on Wednesday in The U.K. The lowest volatility is on Monday in Canada, German, The U.K., and United States.
+
+Until recently, there has been no published research that introduce GARCH method to investigate the-day-of-the-week effect in Indonesia, even though the nature characteristic of stock return’s data has a tendency of time-varying and conditional heteroscedasticity. Moreover, the data characteristic of financial asset return also has a tendency of cluster volatility or pooling volatility. Cluster volatility means that a big change of an asset’s price is followed by a big change and a little change of an asset’s price is also followed by a little change (Brooks, 2014).
+
+A major problem with the OLS is that if the variance is inconstant, then the standard errors are invalid because of the violation of heteroscedasticity. When this assumption does not hold, then the estimated statistical inferences are also invalid for hypothesis testing. To address this violation, our research offers another approach to adopt the modified GARCH model to re-examine the presence of the day of the week effect in Indonesia Stock Exchange.
+
+%--------------------------------------------------#########################################
+\section*{Data and Methodology}
+\label{sec:data}
+
+The daily index price of Indonesia Composite Index is gathered  from Thomson Reuters. The observation start from 1 January 2000 to 31 December 2019. The Indonesia Composite Index (IDX) was issued by Indonesia Stock Exchange in 1983. The index is value-weighted and contained all listed company (equity)  in Indonesia. The return used is calculated as  (close-to-close):
+
+\begin{equation} \label{eq:return}
+R_t =  ln \left (\frac{P_{t}}{P_{t-1}} \right)   *100
+\end{equation}
+where $P_t$ and $R_t$ are index price and index return at time $t$, respectively. The index return is our independent variable.
+
+In the 20 years of observation, we arrange each day to determine between trading days and non-trading days. If there is one or more holiday in five trading days (a week), we drop the observation from the sample. Each observation can only contain one day trading information.  An exception for Monday return which contain information from close-price on Friday until close-price on Monday (three calender days). Each return which contain zero value also exclude from observation which is happened if the close-price of time t is equal to close-price of time t-1 (one period before).
+
+The dependent variables are dummy variables which represent each trading day from Monday to Friday. There are four dummy variables from five trading days. Dummy variable Monday $ (M_t)$ is coded 1  if the return is Monday and 0 (zero) otherwise. Then, the same rule is also applied to Tuesday $ (T_t)$, Thursday $(H_t)$, and Friday $(F_t)$. The base category is Wednesday.
+
+\subsection*{GARCH Models}
+
+Our model was inspired by \cite{French1980}'s work by starting from a static OLS (Ordinary Least Square) regression model:
+\begin{equation} \label{eq:ols}
+    R_t=\beta_0 + \beta_M M_t + \beta_T T_t + \beta_H H_t + \beta_F F_t + \sum_n^{i=1}\beta_i R_{t-i}+ \epsilon_t 
+\end{equation}
+ assumed that all of the Gauss-Markov assumption hold, so the parameters are BLUE (Best Linear Unbiased Estimator). It implies that $var (\epsilon_t | M_t, T_t, H_t,F_t )$ is constant. Even when this unconditional variance is constant, we may have time-variation in the conditional variance of $\epsilon_t$:
+ 
+\begin{equation}\label{eq:arch2}
+E(\epsilon_t^2 | \epsilon_{t-1}, \epsilon_{t-2}, . . .) = E(\epsilon_t^2 | \epsilon_{t-1}) = \alpha_0 + \alpha_1\epsilon_{t-1}^2
+\end{equation}
+Based on equation \eqref{eq:arch2}, the conditional variance of $\epsilon_t$ is a linear function of the square value of its lag $(t-1)$. If the $\epsilon_t$ is not serially correlated, then we can rewrite equation \eqref{eq:arch2} as follow:
+
+\begin{equation}\label{eq:arch3}
+h_t= \alpha_0 +\alpha_1\epsilon_{t-1}^2
+\end{equation}
+ where  $\epsilon_t =\sqrt{h_t} v_t,  v_t \sim(0,1) .$ Equation \eqref{eq:arch3} demonstrates the ARCH(1) model, where the lag value of $\epsilon^2$ is taken into account. We can include a higher-order of ARCH by adding additional lag of $\epsilon^2$.  $\alpha_0$ and $\alpha_1$ must be positive to guarantee positive variance. 
+ 
+ \begin{equation}\label{eq:arch4}
+ h_t= \alpha_0 +\alpha_1\epsilon_{t-1}^2 +\gamma_1 h_{t-1}
+ \end{equation}
+ is called as GARCH (1,1) model. The model \eqref{eq:arch4} includes a single lag of both ARCH term $(\epsilon_{t-1}^2)$ and the conditional variance (GARCH) term $(h_{t-1})$. It also require $\gamma_1>0$ to ensure positive variance. If $p$ is number of ARCH term and $q$ is number of GARCH term, then:
+ 
+  \begin{equation}\label{eq:garch}
+h_t= \alpha_0+\sum_{i=1}^{p}\alpha_i \epsilon_{t-i}^2+\sum_{j=1}^q\gamma_j h_{t-j}^2
+ \end{equation}
+ where $\alpha_0 > 0$, $\alpha_i> 0$ , $\gamma_j >0$, and $\epsilon_t$ is independent and identically distributed with $E[\epsilon_0]=0$ and $E(\epsilon_0^2=1) $.
+ 
+ Moving from equation \eqref{eq:garch}, we adopt  a GARCH modified model which was proposed by \cite{Berument2001}. In this modified-model,  we include day-of-the-week dummy variables and modify standard GARCH model (Eq. \ref{eq:garch}). The base category is Wednesday. We then specify the volatility model as:
+  
+  \begin{equation}\label{eq:arch5}
+ h_t= \alpha_0+\alpha_M M_t +\alpha_t T_t +\alpha_H H_t + \alpha_F F_t+  \sum_{i=1}^{p}\alpha_i \epsilon_{t-i}^2+\sum_{j=1}^q\gamma_j h_{t-j}
+ \end{equation}
+ 
+ The GARCH-modified model is inherently non-linear. We jointly estimate the mean equation \eqref{eq:ols} and the volatility equation \eqref{eq:arch5} by using maximum likelihood method.
+ 
+%--------------------------------------------------#########################################
+\section*{Result and Discussion}
+\label{sec:subsec}
+\setlength\extrarowheight{-7pt}
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros vehicula, bibendum ante vel, posuere lacus. Aliquam erat volutpat. Phasellus nec dapibus neque, ut aliquet libero. Vestibulum aliquam velit non sem faucibus, ut gravida felis dignissim. Fusce quis eros scelerisque, consectetur nulla eget, ornare lectus. Nullam sagittis nisl eu nisi venenatis ultrices. Nam auctor quis sapien at hendrerit.
+
+Mauris faucibus risus tristique eros dictum feugiat. Maecenas sagittis turpis id sem sagittis interdum. Suspendisse et dignissim lacus. Donec tellus ex, pretium nec nisi ut, congue viverra velit. Duis luctus, diam ut maximus commodo, risus eros lacinia sem, at blandit justo orci eu nibh. Nullam ultricies enim vitae dapibus porta. Quisque pulvinar fringilla iaculis. Sed a massa mauris.
+
+Aenean vitae ipsum mauris. Sed efficitur magna a suscipit tristique. Donec et quam eu risus tincidunt hendrerit in in mi. Donec dictum quis dui quis dignissim. Integer gravida neque vel luctus consectetur. Vivamus gravida, ex nec pretium venenatis, ipsum lectus euismod turpis, sit amet gravida nulla urna eu sapien. Fusce porttitor non est ut eleifend. In venenatis consectetur lorem eget convallis. Etiam sem diam, iaculis vel aliquam feugiat, aliquet ullamcorper sem. Nulla non justo magna. Suspendisse porta magna nec elementum eleifend.
+
+Phasellus iaculis posuere sapien eu laoreet. Pellentesque bibendum ex ut eleifend lobortis. Proin aliquam turpis cursus dolor sollicitudin, non varius ex dapibus. Nunc efficitur dui sit amet dignissim interdum. Pellentesque in lorem bibendum, efficitur metus eget, vestibulum mi. Praesent scelerisque tortor lectus, egestas luctus sem fermentum vitae. Proin ultrices diam quis semper pulvinar. Pellentesque interdum diam et dui feugiat elementum. Vivamus sollicitudin vel tellus et vestibulum. Integer eget nibh finibus, eleifend nibh faucibus, pellentesque lacus. Aenean tempor arcu mauris, a rutrum felis fermentum ac. Mauris semper a ante eu volutpat. Nulla pretium nulla at ipsum luctus congue.
+
+Aliquam sed justo at velit consequat tempor condimentum quis felis. Proin congue nisi viverra magna varius, eu efficitur lorem tristique. Pellentesque vehicula fermentum risus, scelerisque facilisis sapien placerat vitae. Nullam a porttitor lectus. Nunc in diam ac massa consequat commodo. Quisque sit amet rutrum nibh. Sed non vulputate ex. Nullam dictum luctus malesuada. Donec tempus nisi at tempor semper. Aenean nisi est, vehicula at accumsan ac, fermentum vitae sem. Nulla rutrum sapien non sagittis laoreet. Vivamus ut luctus orci, at fermentum elit. Maecenas pulvinar risus odio, et finibus nibh hendrerit quis. Vivamus elementum ullamcorper volutpat. Vivamus pharetra finibus ex, eget laoreet felis pretium id. 
+
+\input{tables/summary_stat} % linear regression table
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros vehicula, bibendum ante vel, posuere lacus. Aliquam erat volutpat. Phasellus nec dapibus neque, ut aliquet libero. Vestibulum aliquam velit non sem faucibus, ut gravida felis dignissim. Fusce quis eros scelerisque, consectetur nulla eget, ornare lectus. Nullam sagittis nisl eu nisi venenatis ultrices. Nam auctor quis sapien at hendrerit.
+
+Mauris faucibus risus tristique eros dictum feugiat. Maecenas sagittis turpis id sem sagittis interdum. Suspendisse et dignissim lacus. Donec tellus ex, pretium nec nisi ut, congue viverra velit. Duis luctus, diam ut maximus commodo, risus eros lacinia sem, at blandit justo orci eu nibh. Nullam ultricies enim vitae dapibus porta. Quisque pulvinar fringilla iaculis. Sed a massa mauris.
+
+Aenean vitae ipsum mauris. Sed efficitur magna a suscipit tristique. Donec et quam eu risus tincidunt hendrerit in in mi. Donec dictum quis dui quis dignissim. Integer gravida neque vel luctus consectetur. Vivamus gravida, ex nec pretium venenatis, ipsum lectus euismod turpis, sit amet gravida nulla urna eu sapien. Fusce porttitor non est ut eleifend. In venenatis consectetur lorem eget convallis. Etiam sem diam, iaculis vel aliquam feugiat, aliquet ullamcorper sem. Nulla non justo magna. Suspendisse porta magna nec elementum eleifend.
+
+Phasellus iaculis posuere sapien eu laoreet. Pellentesque bibendum ex ut eleifend lobortis. Proin aliquam turpis cursus dolor sollicitudin, non varius ex dapibus. Nunc efficitur dui sit amet dignissim interdum. Pellentesque in lorem bibendum, efficitur metus eget, vestibulum mi. Praesent scelerisque tortor lectus, egestas luctus sem fermentum vitae. Proin ultrices diam quis semper pulvinar. Pellentesque interdum diam et dui feugiat elementum. Vivamus sollicitudin vel tellus et vestibulum. Integer eget nibh finibus, eleifend nibh faucibus, pellentesque lacus. Aenean tempor arcu mauris, a rutrum felis fermentum ac. Mauris semper a ante eu volutpat. Nulla pretium nulla at ipsum luctus congue.
+
+Aliquam sed justo at velit consequat tempor condimentum quis felis. Proin congue nisi viverra magna varius, eu efficitur lorem tristique. Pellentesque vehicula fermentum risus, scelerisque facilisis sapien placerat vitae. Nullam a porttitor lectus. Nunc in diam ac massa consequat commodo. Quisque sit amet rutrum nibh. Sed non vulputate ex. Nullam dictum luctus malesuada. Donec tempus nisi at tempor semper. Aenean nisi est, vehicula at accumsan ac, fermentum vitae sem. Nulla rutrum sapien non sagittis laoreet. Vivamus ut luctus orci, at fermentum elit. Maecenas pulvinar risus odio, et finibus nibh hendrerit quis. Vivamus elementum ullamcorper volutpat. Vivamus pharetra finibus ex, eget laoreet felis pretium id. 
+\clearpage
+
+% Bibliography.
+
+\bibliographystyle{jfe}
+\bibliography{library}
+
+% Figures and tables, showing how to structure captions
+\clearpage
+
+
+\end{document}

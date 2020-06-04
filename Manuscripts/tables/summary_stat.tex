@@ -1,0 +1,45 @@
+\bigskip
+\begin{table}[ht]\centering
+  \label{tab:summary_stat} 
+  \vspace*{-\baselineskip} % remove space before table
+% To place a caption above a table
+\begin{minipage}{16.2cm}
+\caption{Indonesia Composite Index Return Descriptive Statistics} 
+ \small
+  \vspace*{-\baselineskip} % remove space before table
+\begin{tabular*}{\textwidth}{@{}l @{\extracolsep{\fill}} llllll@{}}
+%{@{}L{4cm}llllll@{}}}
+\toprule
+\textbf{Period}           & All Days & Monday  & Tuesday & Wednesday & Thursday & Friday \\
+\midrule
+2000-2019\\
+\quad Mean               & 0.0458   & -0.1603 & 0.0476  & 0.1564   & 0.0532   & 0.1280 \\
+\quad Standard Deviation & 1.3134   & 1.5183  & 1.2229  & 1.3175   & 1.2818   & 1.1801 \\
+\quad N                  & 4759     & 939     & 961     & 978      & 952      & 929   \\
+\\
+2000-2004\\
+\quad Mean               & 0.0455   & -0.2597 & 0.0331  & 0.1328   & 0.0611   & 0.2442 \\
+\quad Standard Deviation & 1.3881   & 1.6838  & 1.2391  & 1.3761   & 1.3347   & 1.2366 \\
+\quad N                  & 1161     & 220     & 232     & 245      & 238      & 226    \\
+\\
+2005-2009\\
+\quad Mean               & 0.0657   & -0.1373 & 0.0556  & 0.0798   & 0.1199   & 0.2134 \\
+\quad Standard Deviation & 1.6771   & 1.9855  & 1.5675  & 1.7116   & 1.5892   & 1.4788 \\
+\quad N                  & 1192     & 234     & 245     & 248      & 238      & 227    \\
+\\
+2010-2014\\
+\quad Mean               & 0.0580   & -0.1384 & 0.0782  & 0.3269   & -0.0168  & 0.0384 \\
+\quad Standard Deviation & 1.1882   & 1.2691  & 1.1401  & 1.152    & 1.2156   & 1.1141 \\
+\quad N                  & 1224     & 250     & 243     & 249      & 242      & 240    \\
+\\
+2015-2019\\
+\quad Mean                & 0.0133   & -0.1134 & 0.0225  & 0.0816   & 0.0497   & 0.0258 \\
+\quad Standard Deviation & 0.8698   & 0.9671  & 0.8329  & 0.8533   & 0.8871   & 0.7946 \\
+\quad N                  & 1182     & 235     & 241     & 236      & 234      & 236    \\
+
+\toprule
+\end{tabular*}
+
+\caption*{\footnotesize{We calculate the Indonesia Composite Index return using geometric return formula, where $return_t = log(price_t/ price_{t-1})*100$}.The mean is stated as \% return. The data is collected from Thomson Reuters. Each observation contain one day close-to-close return, except for Monday which contain information from Friday's close to Monday's Close. The observation is ranging from 4th January 2000 to 30th December 2019.}
+\end{minipage}
+\end{table}
